@@ -32,48 +32,60 @@
   ];
 
   let subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
-
-  let showSpecs = {}; // Store dropdown states
+  let showSpecs = {};
 
   function toggleSpecs(index) {
     showSpecs[index] = !showSpecs[index];
-    showSpecs = { ...showSpecs }; // Ensure reactivity
+    showSpecs = { ...showSpecs };
   }
 </script>
 
 <div class="cart-container">
-  <h2>MY SHOPPING BAG</h2>
-  <div class="cart-items">
-    {#each cartItems as item, index}
-      <div class="cart-item">
-        <img src={item.image} alt={item.name} />
-        <div class="item-details">
-          <h3>{item.name}</h3>
-          <p>ITEM NO: {item.itemNo}</p>
-          <button class="toggle-btn" on:click={() => toggleSpecs(index)}>
-            {showSpecs[index] ? "Hide Details" : "View More"}
-          </button>
-          <div class="specs" style="max-height: {showSpecs[index] ? '200px' : '0'}; opacity: {showSpecs[index] ? '1' : '0'};">
-            <p>SIZE: {item.size}</p>
-            <p>COLOR: {item.color}</p>
-            <p>QTY: {item.qty}</p>
-          </div>
-        </div>
-        <div class="price">${item.price.toFixed(2)}</div>
-      </div>
-    {/each}
-  </div>
+  <h1 class="cart-header">MY SHOPPING BAG</h1>
   
-  <div class="summary">
-    <h3>SUMMARY</h3>
-    <div class="promo">
-      <input type="text" placeholder="Do you have a promo code?" />
-      <button>APPLY</button>
+  <div class="cart-body">
+    <div class="cart-items">
+      {#each cartItems as item, index}
+        <div class="cart-item">
+          <img src={item.image} alt={item.name} />
+          <div class="item-details">
+            <h3>{item.name}</h3>
+            <p>ITEM NO: {item.itemNo}</p>
+            <button class="toggle-btn" on:click={() => toggleSpecs(index)}>
+              {showSpecs[index] ? "Hide Details" : "View More"}
+            </button>
+            <div class="specs {showSpecs[index] ? 'open' : ''}">
+              <p>SIZE: {item.size}</p>
+              <p>COLOR: {item.color}</p>
+              <p>QTY: {item.qty}</p>
+            </div>
+          </div>
+          <div class="price">${item.price.toFixed(2)}</div>
+        </div>
+      {/each}
     </div>
-    <p><strong>SUBTOTAL:</strong> ${subtotal.toFixed(2)}</p>
-    <p>Shipping: TBD</p>
-    <p>Sales Tax: TBD</p>
-    <p><strong>ESTIMATED TOTAL:</strong> ${subtotal.toFixed(2)}</p>
-    <button class="checkout">CHECKOUT</button>
+    
+    <div class="summary">
+      <h3>SUMMARY</h3>
+      <div class="promo">
+        <input type="text" placeholder="Do you have a promo code?" />
+        <button class="dark-btn">APPLY</button>
+      </div>
+      <div class="billdetails">
+        <div class="bill-row">
+          <span>SUBTOTAL:</span> <span>${subtotal.toFixed(2)}</span>
+        </div>
+        <div class="bill-row">
+          <span>Shipping:</span> <span>TBD</span>
+        </div>
+        <div class="bill-row">
+          <span>Sales Tax:</span> <span>TBD</span>
+        </div>
+        <div class="bill-row" style="font-weight: bold; border-top: 2px solid #555; padding-top: 8px;">
+          <span>ESTIMATED TOTAL:</span> <span>${subtotal.toFixed(2)}</span>
+        </div>
+      </div>      
+      <button class="checkout dark-btn">CHECKOUT</button>
+    </div>
   </div>
-</div>
+</div>  

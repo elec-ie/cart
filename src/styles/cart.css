@@ -1,31 +1,52 @@
+/* Center the cart title */
+.cart-header {
+  width: 100%;
+  text-align: left;
+  font-size: 42px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  border-bottom: 2px solid #444; 
+  margin-bottom: 15px;
+}
+
+/* Cart container centers everything */
 .cart-container {
-  max-width: 900px;
-  margin: auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-h2 {
-  border-bottom: 2px solid black;
-  padding-bottom: 5px;
+/* Cart body ensures items and summary align properly */
+.cart-body {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
 }
 
+/* Left Side - Cart Items */
 .cart-items {
-  border-bottom: 1px solid #ddd;
+  flex: 4;
+  background: #1c1c1c;
+  padding: 15px;
   border-radius: 8px;
-  padding: 10px;
 }
 
 .cart-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  background: #242424;
+  margin-bottom: 10px;
   border-radius: 8px;
 }
 
 .cart-item img {
-  width: 80px;
+  width: 90px;
   height: auto;
   border-radius: 8px;
 }
@@ -35,94 +56,130 @@ h2 {
   padding-left: 20px;
 }
 
-.item-details a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.item-details a:hover {
-  text-decoration: underline;
-  color: #08f;
-}
-
+/* Price styling */
 .price {
   font-weight: bold;
+  font-size: 18px;
+  text-align: right;
 }
 
-.summary {
-  background: rgb(59, 58, 58);
+/* Dark Buttons */
+.dark-btn {
+  background: #000;
+  color: white;
   padding: 10px;
-  margin-top: 20px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid white;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
+.dark-btn:hover {
+  background: #222;
+}
+
+/* Dropdown Animation */
+.specs {
+  background: #1a1a1a; /* Dark background for dropdown */
+  border-radius: 12px; /* Squircles */
+  padding: 8px 12px; /* Inner spacing */
+  font-size: 12px; /* Smaller font size */
+  color: #ddd; /* Light gray text */
+  border: 1px solid #333; /* Subtle border */
+  width: 80%; /* Span entire cart item width */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Soft shadow */
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* Open state */
+.specs.open {
+  max-height: 100px; /* Enough space for details */
+  opacity: 1;
+}
+
+
+
+/* Right Side - Summary */
+.summary {
+  flex: 1;
+  background: #333;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  max-width: 300px;
+  text-align: left;
+}
+
+.billdetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 5px 0;
+}
+
+
+/* Summary Promo Input */
 .promo {
   display: flex;
   gap: 10px;
-  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 .promo input {
   flex: 1;
   padding: 10px;
   border-radius: 8px;
-}
-
-.promo button {
-  background: black;
-  color: white;
-  padding: 10px;
-  border-radius: 8px;
   border: none;
-  cursor: pointer;
 }
 
+/* Checkout Button */
 .checkout {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  background: black;
-  color: white;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
   font-size: 16px;
 }
 
-/* Dropdown Button */
+/* Responsive: Stack summary below cart items */
+@media (max-width: 900px) {
+  .cart-body {
+    flex-direction: column;
+    align-items: center;
+  }
+  .summary {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* View More Button */
 .toggle-btn {
-  margin-top: 5px;
-  padding: 10px;
-  background: #444;
-  color: white;
+  background: #111; /* Dark background */
+  color: #fff; /* White text */
+  padding: 8px 12px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid #fff;
   cursor: pointer;
-  transition: background 0.3s;
+  font-size: 14px;
+  transition: background 0.3s, transform 0.2s;
 }
 
 .toggle-btn:hover {
-  background: #222;
+  background: #333; /* Slightly lighter for effect */
+  transform: scale(1.05); /* Subtle scale effect */
 }
 
-/* Dropdown Specs Section */
-.specs {
-  margin-top: 5px;
-  padding: 10px;
-  background: #161313 !important; /* Force dark background */
-  color: #ddd !important; /* Light text */
-  border-radius: 8px;
-  border: 1px solid #444;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
+.toggle-btn:active {
+  background: #000; /* Slightly darker when clicked */
+  transform: scale(0.98); /* Slight shrink effect */
 }
+
