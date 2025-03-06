@@ -1,230 +1,79 @@
 <script>
+  import "../styles/Cart.css";
+
   let cartItems = [
-    { id: "VL-001", name: "Viva Leaf Tulsi Basil Honey", price: 14.00, quantity: 1, img: "/honey.jpg" }
+    {
+      name: "Mechanical Keyboard",
+      itemNo: "KB-12345",
+      size: "Full Size",
+      color: "Black",
+      qty: 1,
+      price: 120.0,
+      image: "public/keyboard.jpg",
+    },
+    {
+      name: "Wireless Headphones",
+      itemNo: "HP-67890",
+      size: "One Size",
+      color: "Matte Black",
+      qty: 1,
+      price: 250.0,
+      image: "public/headphones.jpg",
+    },
+    {
+      name: "Gaming Laptop",
+      itemNo: "LT-54321",
+      size: "15-inch",
+      color: "Silver",
+      qty: 1,
+      price: 1500.0,
+      image: "public/laptop.jpg",
+    },
   ];
 
-  let suggestedItems = [
-    { name: "Snack Attack", price: 30.00, img: "/snack.jpg" },
-    { name: "Cacao Sampaka Specialty Chocolate", price: 50.00, img: "/chocolate.jpg" },
-    { name: "Saladini Sellato Crescent Knife", price: 125.00, img: "/knife.jpg" }
-  ];
+  let subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
 
-  function increaseQuantity(item) {
-    item.quantity++;
-  }
+  let showSpecs = {}; // Store dropdown states
 
-  function decreaseQuantity(item) {
-    if (item.quantity > 1) item.quantity--;
+  function toggleSpecs(index) {
+    showSpecs[index] = !showSpecs[index];
+    showSpecs = { ...showSpecs }; // Ensure reactivity
   }
 </script>
 
 <div class="cart-container">
-  <h1>CART</h1>
-  
+  <h2>MY SHOPPING BAG</h2>
   <div class="cart-items">
-    <div class="cart-header">
-      <span>Cart Items</span>
-      <span>Price</span>
-      <span>Quantity</span>
-      <span>Subtotal</span>
-    </div>
-
-    {#each cartItems as item}
+    {#each cartItems as item, index}
       <div class="cart-item">
-        <img src={item.img} alt={item.name} />
-        <div class="details">
-          <p>{item.name}</p>
+        <img src={item.image} alt={item.name} />
+        <div class="item-details">
+          <h3>{item.name}</h3>
+          <p>ITEM NO: {item.itemNo}</p>
+          <button class="toggle-btn" on:click={() => toggleSpecs(index)}>
+            {showSpecs[index] ? "Hide Details" : "View More"}
+          </button>
+          <div class="specs" style="max-height: {showSpecs[index] ? '200px' : '0'}; opacity: {showSpecs[index] ? '1' : '0'};">
+            <p>SIZE: {item.size}</p>
+            <p>COLOR: {item.color}</p>
+            <p>QTY: {item.qty}</p>
+          </div>
         </div>
-        <p class="price">${item.price.toFixed(2)}</p>
-        <div class="quantity">
-          <button on:click={() => decreaseQuantity(item)}>-</button>
-          <span>{item.quantity}</span>
-          <button on:click={() => increaseQuantity(item)}>+</button>
-        </div>
-        <p class="subtotal">${(item.price * item.quantity).toFixed(2)}</p>
+        <div class="price">${item.price.toFixed(2)}</div>
       </div>
     {/each}
   </div>
-
-  <div class="suggested-items">
-    <h2>Many Customers Added the Following:</h2>
-    <div class="suggested-grid">
-      {#each suggestedItems as item}
-        <div class="suggested">
-          <img src={item.img} alt={item.name} />
-          <p>{item.name}</p>
-          <p class="price">${item.price.toFixed(2)}</p>
-          <button>Add to Your Order</button>
-        </div>
-      {/each}
+  
+  <div class="summary">
+    <h3>SUMMARY</h3>
+    <div class="promo">
+      <input type="text" placeholder="Do you have a promo code?" />
+      <button>APPLY</button>
     </div>
-  </div>
-
-  <div class="order-summary">
-    <p class="subtotal-text">Subtotal: ${cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}</p>
-    <p class="grand-total">Grand Total: ${cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}</p>
-    <button class="checkout">Proceed to Checkout</button>
-    <button class="continue">Continue Shopping</button>
+    <p><strong>SUBTOTAL:</strong> ${subtotal.toFixed(2)}</p>
+    <p>Shipping: TBD</p>
+    <p>Sales Tax: TBD</p>
+    <p><strong>ESTIMATED TOTAL:</strong> ${subtotal.toFixed(2)}</p>
+    <button class="checkout">CHECKOUT</button>
   </div>
 </div>
-
-<style>
-  .cart-container {
-    width: 85%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-  }
-
-  h1 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-
-  .cart-items {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .cart-header {
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr;
-    font-weight: bold;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ddd;
-  }
-
-  .cart-item {
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
-  }
-
-  img {
-    width: 70px;
-    height: auto;
-    border-radius: 5px;
-  }
-
-  .details {
-    margin-left: 10px;
-  }
-
-  .price, .subtotal {
-    font-weight: bold;
-  }
-
-  .quantity {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .quantity button {
-    padding: 5px 10px;
-    font-size: 16px;
-    border: none;
-    background: #0071e3;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .quantity button:hover {
-    background: #005bb5;
-  }
-
-  .suggested-items {
-    margin-top: 40px;
-  }
-
-  .suggested-grid {
-    display: flex;
-    gap: 20px;
-    margin-top: 15px;
-  }
-
-  .suggested {
-    text-align: center;
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
-  }
-
-  .suggested img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-
-  .suggested .price {
-    font-weight: bold;
-    margin: 8px 0;
-  }
-
-  .suggested button {
-    background: #0071e3;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .suggested button:hover {
-    background: #005bb5;
-  }
-
-  .order-summary {
-    margin-top: 30px;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: right;
-  }
-
-  .subtotal-text, .grand-total {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  .checkout, .continue {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.3s;
-  }
-
-  .checkout {
-    background: #0071e3;
-    color: white;
-  }
-
-  .checkout:hover {
-    background: #005bb5;
-  }
-
-  .continue {
-    background: #ddd;
-    color: #333;
-  }
-
-  .continue:hover {
-    background: #bbb;
-  }
-</style>

@@ -1,10 +1,21 @@
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212; /* Dark mode */
+  color: white; /* White text for contrast */
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
+  min-height: 100vh; /* Allow scrolling */
+}
+
+.cart-container {
+  width: 100vw; /* Take up full screen width */
+  max-width: 1400px; /* Adjust to screen size */
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: white;
 }
