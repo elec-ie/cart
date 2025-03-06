@@ -1,4 +1,3 @@
-/* Center the cart title */
 .cart-header {
   width: 100%;
   text-align: left;
@@ -10,7 +9,6 @@
   margin-bottom: 15px;
 }
 
-/* Cart container centers everything */
 .cart-container {
   display: flex;
   flex-direction: column;
@@ -18,7 +16,6 @@
   width: 100%;
 }
 
-/* Cart body ensures items and summary align properly */
 .cart-body {
   display: flex;
   justify-content: center;
@@ -27,7 +24,6 @@
   width: 100%;
 }
 
-/* Left Side - Cart Items */
 .cart-items {
   flex: 4;
   background: #1c1c1c;
@@ -56,14 +52,12 @@
   padding-left: 20px;
 }
 
-/* Price styling */
 .price {
   font-weight: bold;
   font-size: 18px;
   text-align: right;
 }
 
-/* Dark Buttons */
 .dark-btn {
   background: #000;
   color: white;
@@ -78,31 +72,26 @@
   background: #222;
 }
 
-/* Dropdown Animation */
 .specs {
-  background: #1a1a1a; /* Dark background for dropdown */
-  border-radius: 12px; /* Squircles */
-  padding: 8px 12px; /* Inner spacing */
-  font-size: 12px; /* Smaller font size */
-  color: #ddd; /* Light gray text */
-  border: 1px solid #333; /* Subtle border */
-  width: 80%; /* Span entire cart item width */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Soft shadow */
+  background: #1a1a1a; 
+  border-radius: 12px; 
+  padding: 8px 12px; 
+  font-size: 12px; 
+  color: #ddd; 
+  border: 1px solid #333; 
+  width: 80%; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); 
   transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
 }
 
-/* Open state */
 .specs.open {
-  max-height: 100px; /* Enough space for details */
+  max-height: 100px; 
   opacity: 1;
 }
 
-
-
-/* Right Side - Summary */
 .summary {
   flex: 1;
   background: #333;
@@ -126,8 +115,6 @@
   padding: 5px 0;
 }
 
-
-/* Summary Promo Input */
 .promo {
   display: flex;
   gap: 10px;
@@ -141,7 +128,6 @@
   border: none;
 }
 
-/* Checkout Button */
 .checkout {
   width: 100%;
   padding: 10px;
@@ -149,7 +135,6 @@
   font-size: 16px;
 }
 
-/* Responsive: Stack summary below cart items */
 @media (max-width: 900px) {
   .cart-body {
     flex-direction: column;
@@ -161,10 +146,9 @@
   }
 }
 
-/* View More Button */
 .toggle-btn {
-  background: #111; /* Dark background */
-  color: #fff; /* White text */
+  background: #111; 
+  color: #fff; 
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #fff;
@@ -174,12 +158,11 @@
 }
 
 .toggle-btn:hover {
-  background: #333; /* Slightly lighter for effect */
-  transform: scale(1.05); /* Subtle scale effect */
+  background: #333; 
+  transform: scale(1.05); 
 }
 
 .toggle-btn:active {
-  background: #000; /* Slightly darker when clicked */
-  transform: scale(0.98); /* Slight shrink effect */
+  background: #000; 
+  transform: scale(0.98); 
 }
-
