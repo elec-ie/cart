@@ -29,6 +29,42 @@
       price: 1500.0,
       image: "public/laptop.jpg",
     },
+    {
+      name: "Wireless Headphones",
+      itemNo: "HP-67890",
+      size: "One Size",
+      color: "Matte Black",
+      qty: 1,
+      price: 250.0,
+      image: "public/headphones.jpg",
+    },
+    {
+      name: "Gaming Laptop",
+      itemNo: "LT-54321",
+      size: "15-inch",
+      color: "Silver",
+      qty: 1,
+      price: 1500.0,
+      image: "public/laptop.jpg",
+    },
+    {
+      name: "Wireless Headphones",
+      itemNo: "HP-67890",
+      size: "One Size",
+      color: "Matte Black",
+      qty: 1,
+      price: 250.0,
+      image: "public/headphones.jpg",
+    },
+    {
+      name: "Gaming Laptop",
+      itemNo: "LT-54321",
+      size: "15-inch",
+      color: "Silver",
+      qty: 1,
+      price: 1500.0,
+      image: "public/laptop.jpg",
+    },
   ];
 
   let subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
